@@ -1,5 +1,3 @@
-let cards = document.querySelectorAll('.memory-card');
-
 let ListaCartas = [
         `<div class="memory-card " data-framework="bobrossparrot">
             <img class="back" src="imgs/front.png" alt="">
@@ -37,7 +35,6 @@ let ListaCartas = [
             <img class="front" src="imgs/metalparrot.gif" alt="">
         </div>`,
 
-
         `<div class="memory-card " data-framework="revertitparrot">
             <img class="back" src="imgs/front.png" alt="">
             <img class="front" src="imgs/revertitparrot.gif" alt="">
@@ -47,7 +44,6 @@ let ListaCartas = [
             <img class="front" src="imgs/revertitparrot.gif" alt="">
         </div>`,
 
-
         `<div class="memory-card " data-framework="tripletsparrot">
             <img class="back" src="imgs/front.png" alt="">
             <img class="front" src="imgs/tripletsparrot.gif" alt="">
@@ -55,6 +51,15 @@ let ListaCartas = [
         <div class="memory-card " data-framework="tripletsparrot">
             <img class="back" src="imgs/front.png" alt="">
             <img class="front" src="imgs/tripletsparrot.gif" alt="">
+        </div>`,
+        
+        `<div class="memory-card " data-framework="unicornparrot">
+            <img class="back" src="imgs/front.png" alt="">
+            <img class="front" src="imgs/unicornparrot.gif" alt="">
+        </div>
+        <div class="memory-card " data-framework="unicornparrot">
+            <img class="back" src="imgs/front.png" alt="">
+            <img class="front" src="imgs/unicornparrot.gif" alt="">
         </div>`
 ];
 
@@ -71,7 +76,34 @@ function iniciarMesa(){
         numeroCartas = prompt("Escolha com quantas cartas vai começar, um número valido entre 4 e 14 par");
     }
 
+
+    if(numeroCartas == "4"){
+        
+        document.querySelector(".memory-game").innerHTML = ListaCartas[0] + ListaCartas[1];
+    } 
+    else if(numeroCartas == "6"){
+
+        document.querySelector(".memory-game").innerHTML = ListaCartas[0] + ListaCartas[1] + ListaCartas[2];
+    }
+    else if(numeroCartas == "8"){
+
+        document.querySelector(".memory-game").innerHTML = ListaCartas[0] + ListaCartas[1] + ListaCartas[2] + ListaCartas[3];
+    }
+    else if(numeroCartas == "10"){
+
+        document.querySelector(".memory-game").innerHTML = ListaCartas[0] + ListaCartas[1] + ListaCartas[2] + ListaCartas[3] + ListaCartas[4];
+    }
+    else if(numeroCartas == "12"){
+
+        document.querySelector(".memory-game").innerHTML = ListaCartas[0] + ListaCartas[1] + ListaCartas[2] + ListaCartas[3] + ListaCartas[4] + ListaCartas[5];
+    }
+    else if(numeroCartas == "14"){
+
+        document.querySelector(".memory-game").innerHTML = ListaCartas[0] + ListaCartas[1] + ListaCartas[2] + ListaCartas[3] + ListaCartas[4] + ListaCartas[5] + ListaCartas[6];
+    }
 }
+
+let cards = document.querySelectorAll('.memory-card');
 
 function flipCard(){
      if (travaMesa) return;
@@ -119,7 +151,7 @@ function desvirarCartas(){
 
 (function shuffle() {
     cards.forEach(card => {
-      let ramdomPos = Math.floor(Math.random() * 12);
+      let ramdomPos = Math.floor(Math.random() * 14);
       card.style.order = ramdomPos;
     });
   })();
