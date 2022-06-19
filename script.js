@@ -63,9 +63,10 @@ let ListaCartas = [
         </div>`
 ];
 
-let numeroCartas = prompt("Escolha com quantas cartas vai começar, um número valido entre 4 e 14 par");
+let numeroCartas = prompt("Escolha com quantas cartas vai começar, um número valido par entre 4 e 14");
 let temCartasViradas = false;
 let travaMesa = false;
+let ContagemdeClickCartas = 0;
 let primeiraCarta, segundaCarta;
 
 iniciarMesa();
@@ -105,6 +106,11 @@ function iniciarMesa(){
 
 let cards = document.querySelectorAll('.memory-card');
 
+function Contador(){
+    ContagemdeClickCartas += 1;
+    console.log(ContagemdeClickCartas);
+}
+
 function flipCard(){
      if (travaMesa) return;
      if (this === primeiraCarta) return;
@@ -122,6 +128,7 @@ function flipCard(){
     temCartasViradas = false;
 
     checkForMatch();
+    finalizar();
 }
 
 function  checkForMatch() {
@@ -146,14 +153,24 @@ function desvirarCartas(){
         segundaCarta.classList.remove('flip');
 
         travaMesa = false;
-    }, 1500)
+    }, 1000)
 }
+
+function finalizar(){
+    if(document.querySelectorAll(".flip").length == numeroCartas){
+        alert(`Você ganhou em ${Math.floor(ContagemdeClickCartas/2+1)} jogadas!`);
+    }
+}
+
 
 (function shuffle() {
     cards.forEach(card => {
       let ramdomPos = Math.floor(Math.random() * 14);
       card.style.order = ramdomPos;
     });
-  })();
+})();
+
 
 cards.forEach(card => card.addEventListener('click', flipCard));
+
+cards.forEach(card => card.addEventListener('click', Contador));
