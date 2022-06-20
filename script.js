@@ -74,7 +74,7 @@ iniciarMesa();
 function iniciarMesa(){
     while (numeroCartas != "4" && numeroCartas != "6" && numeroCartas != "8" && numeroCartas != "10"  && numeroCartas != "12" && numeroCartas != "14" ){
         alert("Insira um valor válido");
-        numeroCartas = prompt("Escolha com quantas cartas vai começar, um número valido entre 4 e 14 par");
+        numeroCartas = prompt("Escolha com quantas cartas vai começar, um número par valido entre 4 e 14");
     }
 
 
@@ -106,16 +106,14 @@ function iniciarMesa(){
 
 let cards = document.querySelectorAll('.memory-card');
 
-function Contador(){
-    ContagemdeClickCartas += 1;
-    console.log(ContagemdeClickCartas);
-}
 
 function flipCard(){
      if (travaMesa) return;
      if (this === primeiraCarta) return;
     
     this.classList.add('flip');
+    ContagemdeClickCartas += 1;
+    console.log(ContagemdeClickCartas);
    
 
     if (!temCartasViradas){
@@ -158,7 +156,7 @@ function desvirarCartas(){
 
 function finalizar(){
     if(document.querySelectorAll(".flip").length == numeroCartas){
-        alert(`Você ganhou em ${Math.floor(ContagemdeClickCartas/2+1)} jogadas!`);
+        alert(`Você ganhou em ${ContagemdeClickCartas} jogadas!`);
     }
 }
 
@@ -172,5 +170,3 @@ function finalizar(){
 
 
 cards.forEach(card => card.addEventListener('click', flipCard));
-
-cards.forEach(card => card.addEventListener('click', Contador));
